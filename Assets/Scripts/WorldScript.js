@@ -9,7 +9,7 @@ class Wrapper
 	var type:SquareType;
 	var gameObject:GameObject;
 	
-	function Wrapper(type:SquareType, gameObject){
+	function Wrapper(type:SquareType, gameObject:GameObject){
 		this.type = type;
 		this.gameObject = gameObject;
 	}
@@ -19,7 +19,9 @@ class Wrapper
 	}
 }
 
-
+static function addObject(position:Vector2, type:SquareType, object:GameObject){
+	worldGrid[position.x, position.y] = new Wrapper(type, object);
+}
 
 function Start () {
 	worldGrid = new Wrapper[20,12];
