@@ -16,7 +16,6 @@ class Wrapper
 	
 	function Wrapper(){
 		this.type = SquareType.EMPTY;
-		this.gameObject = new GameObject();
 	}
 }
 
