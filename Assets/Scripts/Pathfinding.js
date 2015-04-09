@@ -1,6 +1,7 @@
 ﻿#pragma strict
 
 static function edgeWeight(src:Vector2, dst:Vector2):float{
+return 1;
 	var dx = Mathf.Abs(src.x - dst.x);
 	var dy = Mathf.Abs(src.y - dst.y);
 	
@@ -82,7 +83,7 @@ static function nextStepToward(src:Vector2, dst:Vector2){
 	src = round(src);
 	dst = round(dst);
 	
-	var visited = new Hashtable(); //HashSet of Vector2's
+	var visited = new Hashtable(); //HashSet of Vector2.ToString()'s
 	var frontier = new Array();
 	
 	var startPt = new FrontierPt();
@@ -90,7 +91,15 @@ static function nextStepToward(src:Vector2, dst:Vector2){
 	startPt.pt = src;
 	frontier.Add(startPt);
 	
+	var loopCount = 0;
+	
 	while(frontier.length > 0){
+		loopCount++;
+
+		if (loopCount > 10000){
+			Debug.LogError("Frontier grew way too big");
+			break;
+		}
 		//Debug.Log((frontier[0] as FrontierPt).pt);
 		var f:FrontierPt = Pathfinding.popShortest(frontier);
 		if (visited.ContainsKey(f.pt.ToString())){

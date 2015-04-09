@@ -16,20 +16,21 @@ function Start () {
 }
 
 function Update () {
+	if (health <= 0) GameObject.Destroy(gameObject, 0);
 	if (!isMoving){
-		if (transform.position.x != target.x || transform.position.x != target.x){
-			stepToPt(Pathfinding.nextStepToward(Vector2(transform.position.x, transform.position.y), target));
+		if (transform.position.x != target.x || transform.position.z != target.y){
+			stepToPt(Pathfinding.nextStepToward(Vector2(transform.position.x, transform.position.z), target));
 		}
 	}
 }
 
 function stepToPt(dst:Vector2){
 	isMoving = true;
-	var src = Vector2(transform.position.x, transform.position.y);
+	var src = Vector2(transform.position.x, transform.position.z);
 	for (var i = 0; i < moveSpeed; i++){
 		var pt = Vector2.Lerp(src, dst, (i+1.0)/(moveSpeed));
 		transform.position.x = pt.x;
-		transform.position.y = pt.y;
+		transform.position.z = pt.y;
 		yield;
 	}
 	isMoving = false;

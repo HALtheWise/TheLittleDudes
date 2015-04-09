@@ -25,10 +25,10 @@ static function addObject(position:Vector2, type:SquareType, object:GameObject){
 
 static function getSquare(x: int, y:int){
 	if (x < 0 || x >= worldGrid.GetLength(0) || 
-		y < 0 || y >= worldGrid.GetLength(1)){
-	
+			y < 0 || y >= worldGrid.GetLength(1)){
 		return new Wrapper(SquareType.OFF_GRID, null);	
 	}
+	return worldGrid[x,y];
 }
 
 function Start () {	
