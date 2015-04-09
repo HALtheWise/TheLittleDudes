@@ -29,13 +29,14 @@ function stepToPt(dst:Vector2){
 	isMoving = true;
 	while (WorldScript.getSquare(dst).type == SquareType.WALL){
 		Debug.Log("attacking wall");
-		WorldScript.getSquare(dst).gameObject.GetComponent(WallScript).health -= 3;
-		for (var i = 0; i < 3; i++){
-			transform.position.x += .2;
-			yield WaitForSeconds(0.05);
-			transform.position.x -= .2;
-			yield WaitForSeconds(0.05);
-		}
+		var gameobj = WorldScript.getSquare(dst).gameObject;
+		if (gameobj != null) gameobj.GetComponent(WallScript).health -= 3;
+		else WorldScript.getSquare(dst).type = SquareType.EMPTY;
+		
+		transform.position.x += .2;
+		yield WaitForSeconds(0.05);
+		transform.position.x -= .2;
+		yield WaitForSeconds(0.05);
 	}
 	
 	var src = Vector2(transform.position.x, transform.position.z);
