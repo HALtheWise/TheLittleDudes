@@ -29,15 +29,29 @@ static function neighbors(cell: Vector2):Array{
 	var width = WorldScript.worldGrid.GetLength(0);
 	var height = WorldScript.worldGrid.GetLength(1);
 	
-	if (x>0)
-		a.Add(new Vector2(x-1, y));
-	if (x<width-1)
-		a.Add(new Vector2(x+1, y));
-	if (y>0)
-		a.Add(new Vector2(x, y-1));
-	if (y < height-1)
-		a.Add(new Vector2(x, y+1));
-		
+	
+	a.Add(new Vector2(x-1, y));
+	a.Add(new Vector2(x+1, y));
+	a.Add(new Vector2(x, y-1));
+	a.Add(new Vector2(x, y+1));
+	
+	a.Add(new Vector2(x-1, y-1));
+	a.Add(new Vector2(x-1, y+1));
+	a.Add(new Vector2(x+1, y-1));
+	a.Add(new Vector2(x+1, y+1));
+	
+	var i = 0;
+	while (i < a.length){
+		var vec:Vector2 = a[i];
+		var xi = vec.x;
+		var yi = vec.y;
+		if (xi < 0 || xi >= width || yi < 0 || yi >= height){
+			a.RemoveAt(i);
+		}else{
+			i++;
+		}
+	}
+	
 	return a;
 	
 }
