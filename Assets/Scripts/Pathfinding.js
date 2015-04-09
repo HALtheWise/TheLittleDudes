@@ -30,13 +30,13 @@ static function neighbors(cell: Vector2):Array{
 	var height = WorldScript.worldGrid.GetLength(1);
 	
 	if (x>0)
-		a.Add(new Vector2(x+1, y));
-	if (x<width-1)
 		a.Add(new Vector2(x-1, y));
+	if (x<width-1)
+		a.Add(new Vector2(x+1, y));
 	if (y>0)
-		a.Add(new Vector2(x, y+1));
-	if (y < height-1)
 		a.Add(new Vector2(x, y-1));
+	if (y < height-1)
+		a.Add(new Vector2(x, y+1));
 		
 	return a;
 	
