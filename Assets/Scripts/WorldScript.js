@@ -23,7 +23,15 @@ static function addObject(position:Vector2, type:SquareType, object:GameObject){
 	worldGrid[position.x, position.y] = new Wrapper(type, object);
 }
 
-function Start () {
+static function getSquare(x: int, y:int){
+	if (x < 0 || x >= worldGrid.GetLength(0) || 
+		y < 0 || y >= worldGrid.GetLength(1)){
+	
+		return new Wrapper(SquareType.OFF_GRID, null);	
+	}
+}
+
+function Start () {	
 	worldGrid = new Wrapper[20,12];
 	for (var x = 0; x < worldGrid.GetLength(0); x++){
 		for (var y = 0; y < worldGrid.GetLength(1); y++){
@@ -32,6 +40,12 @@ function Start () {
 	}
 }
 
-//function Update () {
-//
-//}
+function Update () {
+	var src = Vector2(Random.RandomRange(1, 5), Random.RandomRange(1,5));
+	var dst = Vector2(Random.RandomRange(1, 5), Random.RandomRange(1,5));
+	
+	Debug.Log(src);
+	Debug.Log(dst); 
+	Debug.Log(Pathfinding.nextStepToward(src, dst));
+	Debug.Log("");
+}
