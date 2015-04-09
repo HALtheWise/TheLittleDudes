@@ -28,7 +28,8 @@ function Update () {
 }
 
 function stepToPt(dst:Vector2){
-	
+	var dst2 = Vector3(dst.x, transform.position.y, dst.y);
+	transform.LookAt(dst2);
 	isMoving = true;
 	while (WorldScript.getSquare(dst).type == SquareType.WALL){
 		Debug.Log("attacking wall");
