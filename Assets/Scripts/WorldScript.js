@@ -41,11 +41,11 @@ function Start () {
 }
 
 function Update () {
-	var src = Vector2(Random.RandomRange(1, 5), Random.RandomRange(1,5));
-	var dst = Vector2(Random.RandomRange(1, 5), Random.RandomRange(1,5));
-	
-	Debug.Log(src);
-	Debug.Log(dst); 
-	Debug.Log(Pathfinding.nextStepToward(src, dst));
-	Debug.Log("");
+//	var src = Vector2(Random.RandomRange(1, 5), Random.RandomRange(1,5));
+//	var dst = Vector2(Random.RandomRange(1, 5), Random.RandomRange(1,5));
+//	
+//	Debug.Log(src);
+//	Debug.Log(dst); 
+//	Debug.Log(Pathfinding.nextStepToward(src, dst));
+//	Debug.Log("");
 }
