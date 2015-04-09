@@ -40,7 +40,8 @@ function stepToPt(dst:Vector2){
 	}
 	
 	var src = Vector2(transform.position.x, transform.position.z);
-	for (i = 0; i < moveSpeed; i++){
+	var moveTime = moveSpeed * Vector2.Distance(src, dst) * Random.Range(0.8, 1.2);
+	for (var i = 0; i < moveTime; i++){
 		var pt = Vector2.Lerp(src, dst, (i+1.0)/(moveSpeed));
 		transform.position.x = pt.x;
 		transform.position.z = pt.y;
