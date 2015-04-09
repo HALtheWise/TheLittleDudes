@@ -19,11 +19,15 @@ class Wrapper
 	}
 }
 
+static function addObject(type:SquareType, object:GameObject){
+	addObject(Pathfinding.round(Vector2(object.transform.position.x, object.transform.position.z)), type, object);
+}
+
 static function addObject(position:Vector2, type:SquareType, object:GameObject){
 	worldGrid[position.x, position.y] = new Wrapper(type, object);
 }
 
-static function getSquare(x: int, y:int){
+static function getSquare(x: int, y:int):Wrapper{
 	if (x < 0 || x >= worldGrid.GetLength(0) || 
 			y < 0 || y >= worldGrid.GetLength(1)){
 		return new Wrapper(SquareType.OFF_GRID, null);	
@@ -38,13 +42,15 @@ function Start () {
 			worldGrid[x,y] = new Wrapper();
 		}
 	}
+//	addObject(SquareType.WALL, GameObject.Instantiate(wallPrefab, Vector3(3,0,3), Quaternion.identity));
 }
 
 function Update () {
-//	var src = Vector2(Random.RandomRange(1, 5), Random.RandomRange(1,5));
+//	var src = Vector2(Random.RandomRange(-1, 3), Random.RandomRange(1,3));
 //	var dst = Vector2(Random.RandomRange(1, 5), Random.RandomRange(1,5));
 //	
 //	Debug.Log(src);
+//	Debug.Log(getSquare(src.x, src.y).type);
 //	Debug.Log(dst); 
 //	Debug.Log(Pathfinding.nextStepToward(src, dst));
 //	Debug.Log("");

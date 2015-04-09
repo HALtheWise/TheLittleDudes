@@ -1,11 +1,12 @@
 ﻿#pragma strict
 
 static function edgeWeight(src:Vector2, dst:Vector2):float{
-return 1;
+//return 1;
 	var dx = Mathf.Abs(src.x - dst.x);
 	var dy = Mathf.Abs(src.y - dst.y);
 	
 	var type:SquareType = WorldScript.getSquare(dst.x, dst.y).type;
+//	Debug.Log(type);
 	if (type == SquareType.TOWER || type == SquareType.WALL || type == SquareType.OFF_GRID){
 		return 20;
 	}
