@@ -25,13 +25,31 @@ function Update () {
 }
 
 function stepToPt(dst:Vector2){
+	
 	isMoving = true;
+	while (WorldScript.getSquare(dst).type == SquareType.WALL){
+		Debug.Log("attacking wall");
+		WorldScript.getSquare(dst).gameObject.GetComponent(WallScript).health -= 3;
+		for (var i = 0; i < 3; i++){
+			transform.position.x += .2;
+			yield WaitForSeconds(0.05);
+			transform.position.x -= .2;
+			yield WaitForSeconds(0.05);
+		}
+	}
+	
 	var src = Vector2(transform.position.x, transform.position.z);
-	for (var i = 0; i < moveSpeed; i++){
+	for (i = 0; i < moveSpeed; i++){
 		var pt = Vector2.Lerp(src, dst, (i+1.0)/(moveSpeed));
 		transform.position.x = pt.x;
 		transform.position.z = pt.y;
 		yield;
 	}
 	isMoving = false;
+}
+
+class AItarget{
+	var priority:float;
+	var location:Vector2;
+	
 }

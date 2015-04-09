@@ -4,7 +4,7 @@ var health:float = 100;
 @HideInInspector
 var inited:boolean = false;
 
-function Start () {
+function Awake () {
 	inited = false;
 }
 

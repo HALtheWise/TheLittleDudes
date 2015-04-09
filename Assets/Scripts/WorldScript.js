@@ -27,6 +27,10 @@ static function addObject(position:Vector2, type:SquareType, object:GameObject){
 	worldGrid[position.x, position.y] = new Wrapper(type, object);
 }
 
+static function getSquare(pt:Vector2):Wrapper{
+	return getSquare(pt.x, pt.y);
+}
+
 static function getSquare(x: int, y:int):Wrapper{
 	if (x < 0 || x >= worldGrid.GetLength(0) || 
 			y < 0 || y >= worldGrid.GetLength(1)){
