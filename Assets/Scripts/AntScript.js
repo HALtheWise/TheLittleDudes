@@ -20,6 +20,9 @@ function Update () {
 	if (!isMoving){
 		if (transform.position.x != target.x || transform.position.z != target.y){
 			stepToPt(Pathfinding.nextStepToward(Vector2(transform.position.x, transform.position.z), target));
+		} else { 
+			//You have reachced your destination
+			GameObject.Destroy(gameObject, 0);
 		}
 	}
 }
