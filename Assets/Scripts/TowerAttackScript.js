@@ -10,6 +10,7 @@ function Update () {
 
 var DAMAGE:float;
 var ATTACK_RADIUS:float;
+var alignment:Alignment;
 
 var attackParticles:GameObject;
 
@@ -19,7 +20,8 @@ function tryAttacks() {
 		
 		var didAttack = false;
 		for (var i = 0; i < ants.Length; i++){
-			if (Vector3.Distance(ants[i].transform.position, transform.position) <= ATTACK_RADIUS){
+			if (Vector3.Distance(ants[i].transform.position, transform.position) <= ATTACK_RADIUS
+					&& ants[i].GetComponent(AntScript).alignment != alignment){
 				ants[i].GetComponent(AntScript).health -= DAMAGE;
 				didAttack = true;
 			}
