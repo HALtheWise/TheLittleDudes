@@ -32,7 +32,6 @@ function stepToPt(dst:Vector2){
 	transform.LookAt(dst2);
 	if (isMoving) return;
 	isMoving = true;
-	Debug.Log(WorldScript.getSquare(dst).type);
 	while (WorldScript.getSquare(dst).type != SquareType.EMPTY){
 		//Debug.Log("attacking wall");
 		var gameobj = WorldScript.getSquare(dst).gameObject;
