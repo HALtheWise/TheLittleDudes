@@ -39,6 +39,8 @@ function OnGUI(){
 	}
 }
 
+var wallPrefab:GameObject;
+var towerPrefab:GameObject;
 function Update () {
 	var temp:Vector3;
 	var real:Vector2;
@@ -56,7 +58,7 @@ function Update () {
 			//Debug.Log(real[0]);
 			//Debug.Log(real[1]);
 			WorldScript.addObject(real, SquareType.WALL, gameObject);
-			GameObject.Instantiate(GameObject.Find("WallPrefab"), temp, Quaternion.identity);
+			GameObject.Instantiate(wallPrefab, temp, Quaternion.identity);
 			wallFollow = false;
 		}
 	}
@@ -67,7 +69,7 @@ function Update () {
 			//Debug.Log(real[0]);
 			//Debug.Log(real[1]);
 			WorldScript.addObject(real, SquareType.TOWER, gameObject);
-			GameObject.Instantiate(GameObject.Find("TowerPrefab"), temp, Quaternion.identity);
+			GameObject.Instantiate(towerPrefab, temp, Quaternion.identity);
 			towerFollow = false;
 		}
 	}
