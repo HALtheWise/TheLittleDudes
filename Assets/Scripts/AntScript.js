@@ -15,6 +15,13 @@ function Start () {
 	
 }
 
+function attackBase() {
+	if (alignment == alignment.EVIL){
+		GUIscript.gameOver = true;
+	}
+}
+
+var explosion:GameObject;
 function Update () {
 	if (health <= 0) GameObject.Destroy(gameObject, 0);
 	if (!isMoving){
@@ -22,7 +29,9 @@ function Update () {
 			stepToPt(Pathfinding.nextStepToward(Vector2(transform.position.x, transform.position.z), target));
 		} else { 
 			//You have reachced your destination
+			attackBase();
 			GameObject.Destroy(gameObject, 0);
+			GameObject.Instantiate(explosion, transform.position, Quaternion.identity);
 		}
 	}
 }

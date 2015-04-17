@@ -5,21 +5,29 @@ var wallCursor : Texture2D; // Your cursor texture
 var towerCursor : Texture2D;
 var cursorSizeX : int = Screen.width * 0.04; // Your cursor size x
 var cursorSizeY : int = Screen.height * 0.055; // Your cursor size y
+
+static var gameOver:boolean = false;
      
 function Start () {
-
+	gameOver = false;
 }
 
 function OnGUI(){
+
+	drawResources();
+	if (gameOver){
+		GUI.Box(Rect(50, 50, Screen.width -100, Screen.height-100), "Game Over");
+	}
+
 	if (GUI.Button(Rect(Screen.width * 0.1, Screen.height * 0.9, Screen.width * 0.1, Screen.height * 0.1), 
 			wallCursor)){
-		Debug.Log("hello");
+		Debug.Log("Picked up wall");
 		towerFollow = false;
 		wallFollow = true;
 	}
 	if (GUI.Button(Rect(Screen.width * 0.2, Screen.height * 0.9, Screen.width * 0.1, Screen.height * 0.1), 
 			towerCursor)){
-		Debug.Log("hey");
+		Debug.Log("Picked up tower");
 		wallFollow = false;
 		towerFollow = true;
 	}
@@ -37,6 +45,13 @@ function OnGUI(){
 	{
 		Screen.showCursor = true;
 	}
+}
+
+function drawResources(){
+	GUI.Box(Rect(Screen.width * 0.4, Screen.height * 0.9, Screen.width * 0.2, Screen.height * 0.1), 
+		"Resources Available:\n" + WorldScript.water.ToString() + " Water\n" + 
+		WorldScript.stone.ToString() + " Stone" 
+	);
 }
 
 var wallPrefab:GameObject;
@@ -59,6 +74,8 @@ function Update () {
 			//Debug.Log(real[1]);
 			WorldScript.addObject(real, SquareType.WALL, gameObject);
 			GameObject.Instantiate(wallPrefab, temp, Quaternion.identity);
+			WorldScript.water -= 0;
+			WorldScript.stone -= 1;
 			wallFollow = false;
 		}
 	}
@@ -70,6 +87,8 @@ function Update () {
 			//Debug.Log(real[1]);
 			WorldScript.addObject(real, SquareType.TOWER, gameObject);
 			GameObject.Instantiate(towerPrefab, temp, Quaternion.identity);
+			WorldScript.water -= 2;
+			WorldScript.stone -= 5;
 			towerFollow = false;
 		}
 	}
