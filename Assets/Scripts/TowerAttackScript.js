@@ -30,6 +30,6 @@ function tryAttacks() {
 		if (didAttack){
 			GameObject.Instantiate(attackParticles, transform.position, transform.rotation);
 		}
-		yield WaitForSeconds(ATTACK_DELAY);
+		yield WaitForSeconds(ATTACK_DELAY); //Pause until next attack
 	}
 }
