@@ -1,12 +1,10 @@
 ﻿#pragma strict
 
-function Start () {
+function Start () {}
 
-}
+function Update () {}
 
-function Update () {
-//	Debug.Log(WorldScript.getSquare(14, 10).type);
-}
+var comingWave = 1;
 
 function OnGUI(){
 	if (GUI.Button(Rect(Screen.width * 0.8, Screen.height * 0.85, Screen.width * 0.15, Screen.height * 0.1), 
@@ -15,11 +13,17 @@ function OnGUI(){
 	}
 }
 
+function spawnBadAnt(pt:Vector2, health:float){
+	var ant:GameObject = GameObject.Instantiate(antPrefab, Vector3(pt.x, 0, pt.y), Quaternion.identity);
+	ant.GetComponent(AntScript).health = health;
+}
+
 var antPrefab:GameObject;
 function StartWave(){
-	for (var x = 17; x < 20; x++){
-		for (var z = 11; z > 28-x; z--){
-			GameObject.Instantiate(antPrefab, Vector3(x, 0, z), Quaternion.identity);
-		}
+	switch (comingWave){
+		case 1:
+		spawnBadAnt(Vector2(18, 9), 10);
+		break;
+		
 	}
 }
