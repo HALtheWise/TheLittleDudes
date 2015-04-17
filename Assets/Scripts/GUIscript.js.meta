@@ -2,7 +2,9 @@ fileFormatVersion: 2
 guid: 685db6dd0561de94398bbfa58147d3a6
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - wallCursor: {fileID: 2800000, guid: dd39b42c895234a4ba336ba23e62f332, type: 3}
+  - towerCursor: {fileID: 2800000, guid: 3c997eefa2a264f7fb4c2082e0a6dd3e, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
