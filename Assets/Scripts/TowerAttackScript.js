@@ -10,6 +10,7 @@ function Update () {
 
 var DAMAGE:float;
 var ATTACK_RADIUS:float;
+var ATTACK_DELAY:float = 0.4;
 var alignment:Alignment;
 
 var attackParticles:GameObject;
@@ -29,6 +30,6 @@ function tryAttacks() {
 		if (didAttack){
 			GameObject.Instantiate(attackParticles, transform.position, transform.rotation);
 		}
-		yield WaitForSeconds(0.4);
+		yield WaitForSeconds(ATTACK_DELAY);
 	}
 }
