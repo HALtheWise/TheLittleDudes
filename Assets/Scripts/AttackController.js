@@ -5,7 +5,7 @@ function Start () {
 }
 
 function Update () {
-
+//	Debug.Log(WorldScript.getSquare(14, 10).type);
 }
 
 function OnGUI(){

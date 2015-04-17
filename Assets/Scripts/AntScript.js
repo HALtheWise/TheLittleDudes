@@ -30,9 +30,11 @@ function Update () {
 function stepToPt(dst:Vector2){
 	var dst2 = Vector3(dst.x, transform.position.y, dst.y);
 	transform.LookAt(dst2);
+	if (isMoving) return;
 	isMoving = true;
-	while (WorldScript.getSquare(dst).type == SquareType.WALL){
-		Debug.Log("attacking wall");
+	Debug.Log(WorldScript.getSquare(dst).type);
+	while (WorldScript.getSquare(dst).type != SquareType.EMPTY){
+		//Debug.Log("attacking wall");
 		var gameobj = WorldScript.getSquare(dst).gameObject;
 		if (gameobj != null) gameobj.GetComponent(WallScript).health -= 3;
 		else WorldScript.getSquare(dst).type = SquareType.EMPTY;

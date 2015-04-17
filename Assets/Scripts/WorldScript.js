@@ -20,7 +20,7 @@ class Wrapper
 }
 
 static function addObject(type:SquareType, object:GameObject){
-	addObject(Pathfinding.round(Vector2(object.transform.position.x, object.transform.position.z)), type, object);
+	addObject(vecTranslate(object.transform.position), type, object);
 }
 
 static function addObject(position:Vector2, type:SquareType, object:GameObject){
@@ -30,7 +30,12 @@ static function addObject(position:Vector2, type:SquareType, object:GameObject){
 }
 
 static function getSquare(pt:Vector2):Wrapper{
+	pt = Pathfinding.round(pt);
 	return getSquare(pt.x, pt.y);
+}
+
+static function vecTranslate(pos:Vector3):Vector2{
+	return Pathfinding.round(Vector2(pos.x, pos.z));
 }
 
 static function getSquare(x: int, y:int):Wrapper{
