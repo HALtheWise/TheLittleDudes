@@ -21,7 +21,7 @@ function spawnBadAnt(pt:Vector2, health:float):GameObject{
 
 var antPrefab:GameObject;
 function StartWave(){
-	var ant = spawnBadAnt(Vector2(1,1), 10);
+	var ant = spawnBadAnt(Vector2(1,1), 5*comingWave);
 	var s = ant.GetComponent(AntScript);
 	s.target = Vector2(19, 9);
 	s.alignment = Alignment.GOOD;
