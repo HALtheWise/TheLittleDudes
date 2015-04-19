@@ -2,7 +2,11 @@
 
 function Start () {}
 
-function Update () {}
+function Update () {
+	if (GameObject.FindGameObjectsWithTag("Ant").Length == 0){
+		WorldScript.gameState = GameMode.BUILD_PHASE;
+	}
+}
 
 var comingWave = 1;
 
@@ -21,6 +25,7 @@ function spawnBadAnt(pt:Vector2, health:float):GameObject{
 
 var antPrefab:GameObject;
 function StartWave(){
+	WorldScript.gameState = GameMode.ATTACK_PHASE;
 	var ant = spawnBadAnt(Vector2(1,1), 5*comingWave);
 	var s = ant.GetComponent(AntScript);
 	s.target = Vector2(19, 9);
