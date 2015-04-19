@@ -1,10 +1,11 @@
 #pragma strict
-var wallFollow:boolean = false;
-var towerFollow:boolean = false;
-var wallCursor : Texture2D; // Your cursor texture
-var towerCursor : Texture2D;
 var cursorSizeX : int = Screen.width * 0.04; // Your cursor size x
 var cursorSizeY : int = Screen.height * 0.055; // Your cursor size y
+
+var cursors : Texture2D[];
+var prefabs : GameObject[];
+@HideInInspector
+var carryingObject:int = -1;
 
 static var gameOver:boolean = false;
      
@@ -12,8 +13,12 @@ function Start () {
 	gameOver = false;
 }
 
-function OnGUI(){
+function pickup(id:int){
+	carryingObject = id;
+	Debug.Log(String.Format("Picked up {0}", prefabs[id].name));
+}
 
+function OnGUI(){
 	drawMode();
 	drawResources();
 	if (gameOver){
@@ -21,26 +26,18 @@ function OnGUI(){
 	}
 
 	if (GUI.Button(Rect(Screen.width * 0.1, Screen.height * 0.9, Screen.width * 0.1, Screen.height * 0.1), 
-			wallCursor)){
-		Debug.Log("Picked up wall");
-		towerFollow = false;
-		wallFollow = true;
+			cursors[0])){
+		pickup(0);
 	}
 	if (GUI.Button(Rect(Screen.width * 0.2, Screen.height * 0.9, Screen.width * 0.1, Screen.height * 0.1), 
-			towerCursor)){
-		Debug.Log("Picked up tower");
-		wallFollow = false;
-		towerFollow = true;
+			cursors[1])){
+		pickup(1);
 	}
-	if(wallFollow)
+	if(carryingObject >= 0)
 	{
     	Screen.showCursor = false;
-    	GUI.DrawTexture (Rect(Event.current.mousePosition.x-cursorSizeX/2, Event.current.mousePosition.y-cursorSizeY/2, Screen.width * 0.04, Screen.height * 0.055), wallCursor);
-	}
-	else if(towerFollow)
-	{
-		Screen.showCursor = false;
-    	GUI.DrawTexture (Rect(Event.current.mousePosition.x-cursorSizeX/2, Event.current.mousePosition.y-cursorSizeY/2, Screen.width * 0.04, Screen.height * 0.055), towerCursor);
+    	GUI.DrawTexture (Rect(Event.current.mousePosition.x-cursorSizeX/2, Event.current.mousePosition.y-cursorSizeY/2, Screen.width * 0.04, Screen.height * 0.055), 
+    		cursors[carryingObject]);
 	}
 	else
 	{
@@ -64,45 +61,22 @@ function drawResources(){
 	);
 }
 
-var wallPrefab:GameObject;
-var towerPrefab:GameObject;
 function Update () {
 	var temp:Vector3;
 	var real:Vector2;
 	var cam = GameObject.Find("Main Camera");
 	temp = cam.camera.ScreenToWorldPoint(Input.mousePosition);
 	real = Pathfinding.round(Vector2(temp[0],temp[2]));
-	temp[0] = real[0];
-	temp[1] = 0;
-	temp[2] = real[1];
 	
-	if(wallFollow)
+	if(carryingObject >= 0)
 	{
 		if(Input.GetMouseButtonDown(0))
 		{
-			//Debug.Log(real[0]);
-			//Debug.Log(real[1]);
-			WorldScript.addObject(real, SquareType.WALL, gameObject);
-			GameObject.Instantiate(wallPrefab, temp, Quaternion.identity);
-			WorldScript.water -= 0;
-			WorldScript.stone -= 1;
-			wallFollow = false;
+			Debug.Log(String.Format("Placed {0}", prefabs[carryingObject].name));
+//			WorldScript.addObject(real, SquareType.WALL, gameObject);
+			GameObject.Instantiate(prefabs[carryingObject], WorldScript.vecTranslate(real), Quaternion.identity);
+			ResourceManager.deductResources(1,1,1,1);
+			carryingObject = -1;
 		}
-	}
-	else if(towerFollow)
-	{
-		if(Input.GetMouseButtonDown(0))
-		{
-			//Debug.Log(real[0]);
-			//Debug.Log(real[1]);
-			WorldScript.addObject(real, SquareType.TOWER, gameObject);
-			GameObject.Instantiate(towerPrefab, temp, Quaternion.identity);
-			WorldScript.water -= 2;
-			WorldScript.stone -= 5;
-			towerFollow = false;
-		}
-	}
-	else{
-	
 	}
 }
