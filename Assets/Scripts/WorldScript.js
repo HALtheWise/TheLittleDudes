@@ -44,8 +44,17 @@ static function getSquare(pt:Vector2):Wrapper{
 	return getSquare(pt.x, pt.y);
 }
 
+static function getSquare(pt:Vector3):Wrapper{
+	return getSquare(vecTranslate(pt));
+}
+
 static function vecTranslate(pos:Vector3):Vector2{
 	return Pathfinding.round(Vector2(pos.x, pos.z));
+}
+
+static function vecTranslate(pos:Vector2):Vector3{
+	Pathfinding.round(pos);
+	return Vector3(pos.x, 0, pos.y);
 }
 
 static function getSquare(x: int, y:int):Wrapper{
