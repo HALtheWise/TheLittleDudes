@@ -30,6 +30,10 @@ function OnGUI(){
 		pickup(0);
 	}
 	if (GUI.Button(Rect(Screen.width * 0.2, Screen.height * 0.9, Screen.width * 0.1, Screen.height * 0.1), 
+			cursors[2])){
+		pickup(2);
+	}
+	if (GUI.Button(Rect(Screen.width * 0.3, Screen.height * 0.9, Screen.width * 0.1, Screen.height * 0.1), 
 			cursors[1])){
 		pickup(1);
 	}
