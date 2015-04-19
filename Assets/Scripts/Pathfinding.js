@@ -7,7 +7,8 @@ static function edgeWeight(src:Vector2, dst:Vector2):float{
 	
 	var type:SquareType = WorldScript.getSquare(dst.x, dst.y).type;
 //	Debug.Log(type);
-	if (type == SquareType.TOWER || type == SquareType.WALL || type == SquareType.OFF_GRID){
+	if (type == SquareType.TOWER || type == SquareType.WALL || 
+		type == SquareType.OFF_GRID || type == SquareType.MINE){
 		return 20;
 	}
 	
