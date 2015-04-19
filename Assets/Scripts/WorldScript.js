@@ -2,9 +2,9 @@
 
 static var worldGrid:Wrapper[,];
 
-static var water: int = 10;
-static var stone:int = 15;
+static var resources:int[] = [10,10,10,10];
 
+enum Resource {AIR, EARTH, FIRE, WATER, NONE};
 enum SquareType {EMPTY, OFF_GRID, ENEMY_BASE, HOME_BASE, TOWER, WALL, MINE};
 
 class Wrapper

@@ -48,9 +48,12 @@ function OnGUI(){
 }
 
 function drawResources(){
-	GUI.Box(Rect(Screen.width * 0.4, Screen.height * 0.9, Screen.width * 0.2, Screen.height * 0.1), 
-		"Resources Available:\n" + WorldScript.water.ToString() + " Water\n" + 
-		WorldScript.stone.ToString() + " Stone" 
+	GUI.Box(Rect(Screen.width * 0.0, Screen.height * 0.0, Screen.width * 0.2, Screen.height * 0.2), 
+		String.Format("Resources Available:\nAir: {0}\nEarth: {1}\nFire: {2}\nWater: {3}", 
+			WorldScript.resources[Resource.AIR+0],
+			WorldScript.resources[Resource.EARTH+0],
+			WorldScript.resources[Resource.FIRE+0],
+			WorldScript.resources[Resource.WATER+0])
 	);
 }
 
