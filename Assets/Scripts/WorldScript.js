@@ -5,7 +5,7 @@ static var worldGrid:Wrapper[,];
 static var water: int = 10;
 static var stone:int = 15;
 
-enum SquareType {EMPTY, OFF_GRID, ENEMY_BASE, HOME_BASE, TOWER, WALL};
+enum SquareType {EMPTY, OFF_GRID, ENEMY_BASE, HOME_BASE, TOWER, WALL, MINE};
 
 class Wrapper
 {
