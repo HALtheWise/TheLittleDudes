@@ -1,6 +1,6 @@
 ﻿#pragma strict
 
-enum Alignment {GOOD, EVIL};
+enum Alignment {GOOD, EVIL, NEUTRAL};
 
 var health:float = 100.0;
 var alignment:Alignment;
