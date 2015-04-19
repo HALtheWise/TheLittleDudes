@@ -4,6 +4,9 @@ static var worldGrid:Wrapper[,];
 
 static var resources:int[] = [10,10,10,10];
 
+static var gameState:GameMode = GameMode.BUILD_PHASE;
+
+enum GameMode {ATTACK_PHASE, BUILD_PHASE};
 enum Resource {AIR, EARTH, FIRE, WATER, NONE};
 enum SquareType {EMPTY, OFF_GRID, ENEMY_BASE, HOME_BASE, TOWER, WALL, MINE};
 

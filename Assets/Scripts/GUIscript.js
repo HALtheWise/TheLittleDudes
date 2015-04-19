@@ -14,6 +14,7 @@ function Start () {
 
 function OnGUI(){
 
+	drawMode();
 	drawResources();
 	if (gameOver){
 		GUI.Box(Rect(50, 50, Screen.width -100, Screen.height-100), "Game Over");
@@ -45,6 +46,12 @@ function OnGUI(){
 	{
 		Screen.showCursor = true;
 	}
+}
+
+function drawMode(){
+	GUI.Box(Rect(Screen.width * 0.3, Screen.height * 0.0, Screen.width * 0.4, Screen.height * 0.05), 
+		"Phase: " + WorldScript.gameState
+	);
 }
 
 function drawResources(){
