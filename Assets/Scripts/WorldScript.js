@@ -14,7 +14,9 @@ class Wrapper
 {
 	var type:SquareType;
 	var gameObject:GameObject;
+	var alignment:Alignment = Alignment.NEUTRAL;
 	
+	var resource:Resource = Resource.NONE;
 	function Wrapper(type:SquareType, gameObject:GameObject){
 		this.type = type;
 		this.gameObject = gameObject;
@@ -30,9 +32,11 @@ static function addObject(type:SquareType, object:GameObject){
 }
 
 static function addObject(position:Vector2, type:SquareType, object:GameObject){
+	var old = getSquare(position);
 	if (Rect(0, 0, worldGrid.GetLength(0), worldGrid.GetLength(1)).Contains(position)){
 		worldGrid[position.x, position.y] = new Wrapper(type, object);
 	}
+	worldGrid[position.x, position.y].resource = old.resource;
 }
 
 static function getSquare(pt:Vector2):Wrapper{
